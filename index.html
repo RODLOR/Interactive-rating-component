@@ -2,24 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Interactive rating component</title>
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
 
   <!-- Rating state start -->
+
   <div id="cardRating">
-    <img src="/images/icon-star.svg" alt="get">
+  <img id="star" src="/images/icon-star.svg" alt="get"> 
     <h1>How did we do?</h1>
-    <p>Please let us know how we did your support request. All feedback is appreciated to help us improve our offering!</p>
+    <p class="textGray">Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
     <form id="myForm" action="/index.html" method="get">
       <input onclick="keepActive(r1)" type="button" name="check" id="r1" value="1">
       <input onclick="keepActive(r2)" type="button" name="check" id="r2" value="2">
@@ -27,65 +23,72 @@
       <input onclick="keepActive(r4)" type="button" name="check" id="r4" value="4">
       <input onclick="keepActive(r5)" type="button" name="check" id="r5" value="5">
     </form>
+    <div id="buttonDiv">
     <button onclick='submit(), hide()'>SUBMIT</button>
   </div>
-  <!-- Rating state end -->
+  </div>
 
+  <!-- Rating state end -->
   <!-- Thank you state start -->
 
   <div id="cardEnd">
-    <img src="/images/illustration-thank-you.svg" alt="ThanksImg">
-    <p id="check">You selected <!-- Add rating here --> out of 5</p>
+      <img id="thanksImg" src="/images/illustration-thank-you.svg" alt="ThanksImg">
+        <div class="myTextContainer">
+          <p id="myText">You selected <!-- Add rating here --> out of 5</p>
+        </div>
     <h1>Thank you!</h1>
-    <p>We appreciate you taking the time to give a rating. If you ever need more support, 
-  don’t hesitate to get in touch!</p>
+    <p class="textGray">We appreciate you taking the time to give a rating. If you ever need more support, 
+    don’t hesitate to get in touch!</p>
   </div>
 
-  <!-- Thank you state end -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">RODRIGO JAMEL LORENZO GUZMAN</a>.
-  </div>
+<!-- Thank you state end -->
+
+  <script>
+    let myText = document.getElementById('myText');
+    cardEnd.hidden = true;
+    function submit() {
+      let checked = '';
+      for(let elements of myForm) {
+        checked += elements.checked;
+      }
+      switch(checked) {
+      case 'truefalsefalsefalsefalse': myText.innerHTML = 'You selected 1 out of 5';
+      break;
+      case 'falsetruefalsefalsefalse': myText.innerHTML = 'You selected 2 out of 5';
+      break;
+      case 'falsefalsetruefalsefalse': myText.innerHTML = 'You selected 3 out of 5';
+      break;
+      case 'falsefalsefalsetruefalse': myText.innerHTML = 'You selected 4 out of 5';
+      break;
+      case 'falssfalsefalsefalsetrue': myText.innerHTML = 'You selected 5 out of 5';
+      break;
+    }
+    }
+    function hide() {
+      if (r1.checked == true || r2.checked == true || r3.checked == true || r4.checked == true || r5.checked == true) {
+      cardRating.hidden = true;
+      cardEnd.hidden = false;
+      }
+    }
+    function keepActive(i) {
+      i.checked = true;
+      if(i.checked == true){
+        r1.checked = false, r2.checked = false, r3.checked = false, r4.checked = false, r5.checked = false;
+        r1.style.backgroundColor = "hsl(215, 22%, 15%)";
+        r2.style.backgroundColor = "hsl(215, 22%, 15%)";
+        r3.style.backgroundColor = "hsl(215, 22%, 15%)";
+        r4.style.backgroundColor = "hsl(215, 22%, 15%)";
+        r5.style.backgroundColor = "hsl(215, 22%, 15%)";
+        r1.style.color = "hsl(217, 12%, 63%)";
+        r2.style.color = "hsl(217, 12%, 63%)";
+        r3.style.color = "hsl(217, 12%, 63%)";
+        r4.style.color = "hsl(217, 12%, 63%)";
+        r5.style.color = "hsl(217, 12%, 63%)";
+      }
+      i.checked = true;
+      i.style.backgroundColor = "hsl(217, 12%, 63%)";
+      i.style.color = "white";
+    }
+  </script>
 </body>
-<script>
-  let r1 = document.getElementById('r1');
-  let r2 = document.getElementById('r2');
-  let r3 = document.getElementById('r3');
-  let r4 = document.getElementById('r4');
-  let r5 = document.getElementById('r5');
-  let cardRating = document.getElementById('cardRating');
-  let cardEnd = document.getElementById('cardEnd');
-  let myForm = document.forms['myForm'];
-  let myText = document.getElementById('check');
-  cardEnd.hidden = true;
-  function submit() {
-    let checked = '';
-    for(let elements of myForm) {
-      checked += elements.checked;
-    }
-    switch(checked) {
-    case 'truefalsefalsefalsefalse': myText.innerHTML = 'You selected 1 out of 5';
-    break;
-    case 'falsetruefalsefalsefalse': myText.innerHTML = 'You selected 2 out of 5';
-    break;
-    case 'falsefalsetruefalsefalse': myText.innerHTML = 'You selected 3 out of 5';
-    break;
-    case 'falsefalsefalsetruefalse': myText.innerHTML = 'You selected 4 out of 5';
-    break;
-    case 'falsefalsefalsefalsetrue': myText.innerHTML = 'You selected 5 out of 5';
-    break;
-  }
-  }
-  function hide() {
-    cardRating.hidden = true;
-    cardEnd.hidden = false;
-  }
-  function keepActive(i) {
-    if(r1.checked == true|| r2.checked == true|| r3.checked == true || r4.checked == true || r5.checked == true){
-      r1.checked = false, r2.checked = false, r3.checked = false, r4.checked = false, r5.checked = false;
-    }
-    i.checked = true;
-  }
-</script>
 </html>
