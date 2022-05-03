@@ -24,7 +24,7 @@ body {
 #cardRating, #cardEnd {
     position: absolute;
     background-color: var(--secundary);
-    margin: 20vh 0px 5vh 0px;
+    margin: 25vh 0px 5vh 0px;
     width: 343px;
     height: 345px;
     border-radius: 30px;
